@@ -1,0 +1,7 @@
+meal_id,meal_name,meal_category,calories,is_vegetarian,is_active
+M001,Kurczak w sosie curry,Obiad,650,false,true
+M002,Sałatka grecka,Lunch,320,true,true
+M003,Łosoś z warzywami,Obiad,580,false,true
+M004,Zupa pomidorowa,Zupa,180,true,true
+M005,Makaron carbonara,Obiad,720,false,false
+M006,Risotto z grzybami,Obiad,490,true,true

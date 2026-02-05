@@ -1,0 +1,74 @@
+version: 2
+
+models:
+  - name: stg_seeds__meals
+    description: >
+      Staging model for meals reference data from seeds. Contains meal
+      attributes including name, category, and nutritional information.
+    columns:
+      - name: meal_id
+        description: Natural key - unique identifier for the meal
+        data_tests:
+          - unique
+          - not_null
+
+      - name: meal_name
+        description: Display name of the meal
+        data_tests:
+          - not_null
+
+      - name: meal_category
+        description: Category of the meal (Obiad, Lunch, Zupa)
+        data_tests:
+          - not_null
+
+      - name: calories
+        description: Calorie count per serving
+        data_tests:
+          - not_null
+
+      - name: is_vegetarian
+        description: Whether the meal is vegetarian
+        data_tests:
+          - not_null
+
+      - name: is_active
+        description: Whether the meal is currently active in the menu
+        data_tests:
+          - not_null
+
+  - name: stg_seeds__meal_ratings
+    description: >
+      Staging model for meal ratings from seeds. Contains customer ratings
+      for meals with scores and optional comments. Note: source data contains
+      quality issues (null rating_id, duplicates) that must be handled downstream.
+    columns:
+      - name: rating_id
+        description: Natural key - unique identifier for the rating (may be null in source)
+
+      - name: meal_id
+        description: Foreign key to meals seed
+        data_tests:
+          - not_null
+
+      - name: user_id
+        description: Foreign key to user
+        data_tests:
+          - not_null
+
+      - name: rating_score
+        description: Rating score from 1 to 5
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [1, 2, 3, 4, 5]
+
+      - name: meal_date
+        description: Date when the meal was consumed
+        data_tests:
+          - not_null
+
+      - name: created_at
+        description: Timestamp when rating was created
+        data_tests:
+          - not_null
